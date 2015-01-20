@@ -19,7 +19,7 @@ E800: little-indian 0x00E8 (0x00E8 & 0xFFF0 = 224 Watts) last nibble (8) conside
 1. [Secondary]<BR>
 OSV3 6284 3C480B60 <BR>
 Same as primary without total energy and nibble#4 from 1 to 4 ( one every 12 seconds)<BR>
-CMR180 sends secondary packets in case of high power changes.<BR>
+CMR180 sends secondary packets in case of significative high power changes.<BR>
 
 ##Getting Started
 
