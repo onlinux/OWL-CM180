@@ -359,7 +359,7 @@ void reportSerial (const char* s, class DecodeOOK& decoder) {
          // Ignore secondary frames (6 Bytes long)
          Serial.print(" ,total:");
          Serial.print(total(data));
-         Serial.print(" ,total Wh:");
+         Serial.print(" ,total kWh:");
          Serial.print(ftotal);
          //drawOwl(power(data), total(data)/3600);
        }
