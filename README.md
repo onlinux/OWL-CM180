@@ -34,7 +34,13 @@ Wiring RFx433 receiver
  Load arduino sketch (https://raw.github.com/onlinux/OWL-CMR180/master/arduino/oregon_owl.ino)
  ![DIY CM180 Monitor ](https://raw.github.com/onlinux/OWL-CMR180/master/images/oregon_owl_serial_output.png)
  
-##Raspberry Pi.
+## Raspberry Pi.
+base on http://www.disk91.com/2013/technology/hardware/oregon-scientific-sensors-with-raspberry-pi/<BR>
+I added support for owl-cmr180 sensor ( files Sensor.cpp and RcOok.cpp)
+
+1. [RcOok.cpp] (https://github.com/onlinux/OWL-CMR180/blob/master/src/RcOok.cpp) support for OSV3 104bits and 46bits packet length.
+2. [Sensor.cpp] (https://github.com/onlinux/OWL-CMR180/blob/master/src/Sensor.cpp) Parsing packets OSV3<BR>
+ 
 GPIO used is the wiringPi GPIO0 corresponding to PIN 11 (GPIO17)
 
 ```bash
