@@ -341,8 +341,8 @@ void reportSerial (const char* s, class DecodeOOK& decoder) {
          // Secondary frame is only 6 Bytes long
          Serial.print(" ,total:");
          Serial.print(total(data));
-         Serial.print(" ,total Wh:");
-         Serial.print(total(data)/3600);
+         Serial.print(" ,total kWh:");
+         Serial.print(total(data)/3600/1000);
        }
        Serial.println();
     }

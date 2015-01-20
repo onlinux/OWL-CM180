@@ -1,3 +1,11 @@
+// New code to decode OOK signals from Energy OWL CMR180 sensor
+// Oregon V3 decoder added - Eric Vandecasteele (onlinux)
+//
+// Oregon V2 decoder modfied - Olivier Lebrun
+// Oregon V2 decoder added - Dominique Pierre
+// New code to decode OOK signals from weather sensors, etc.
+// 2010-04-11 <jcw@equi4.com> http://opensource.org/licenses/mit-license.php
+// $Id: ookDecoder.pde 5331 2010-04-17 10:45:17Z jcw $
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
