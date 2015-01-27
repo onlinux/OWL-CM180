@@ -34,7 +34,7 @@ Wiring RFx433 receiver
  Load arduino sketch (https://raw.github.com/onlinux/OWL-CMR180/master/arduino/oregon_owl.ino)
  ![DIY CM180 Monitor ](https://raw.github.com/onlinux/OWL-CMR180/master/images/oregon_owl_serial_output.png)
  
-## Raspberry Pi.
+## Raspberry Pi
 Based on http://www.disk91.com/2013/technology/hardware/oregon-scientific-sensors-with-raspberry-pi/<BR>
 I added support for owl-cmr180 transmitter ( files Sensor.cpp and RcOok.cpp)
 
