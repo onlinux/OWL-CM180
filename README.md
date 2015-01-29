@@ -38,7 +38,7 @@ Wiring RFx433 receiver
 Based on http://www.disk91.com/2013/technology/hardware/oregon-scientific-sensors-with-raspberry-pi/<BR>
 I added support for owl-cmr180 transmitter ( files Sensor.cpp and RcOok.cpp)
 
-1. [RcOok.cpp] (https://github.com/onlinux/OWL-CMR180/blob/master/src/RcOok.cpp) support for OSV3 104bits and 46bits packet length.
+1. [RcOok.cpp] (https://github.com/onlinux/OWL-CMR180/blob/master/src/RcOok.cpp) support for OSV3 108bits and 46bits packet length.
 2. [Sensor.cpp] (https://github.com/onlinux/OWL-CMR180/blob/master/src/Sensor.cpp) Parsing packets OSV3<BR>
 
 As mentionned by disk91, 
