@@ -3,7 +3,7 @@ Decode and parse the Oregon Scientific V3 radio data transmitted by  OWL CM180 E
 
 Owl micro+ Wireless electricity monitor runs on Oregon Scientific V3 protocol.
 
-After buying one of those wonderful little devices to study the energy consumed at home, i browsed the internet to find a way to decode frames sent by the transmitter (CMR180) but I have not found any application describing the coding system of the data within the radio frames. So I decided to study the radio packets to decode the system.
+After buying one of those wonderful little devices to study the energy consumed at home, i browsed the internet to find a way to decode frames sent by the transmitter (CMR180) but I have not found any application describing the coding system of the data within the radio frames. So I decided to study the radio packets to decode the system myself.
 
 ![DIY CM180 Monitor ](https://raw.github.com/onlinux/OWL-CMR180/master/images/diy-owl-cm180.jpg)
 ##Packet format
