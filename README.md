@@ -56,9 +56,7 @@ $ git clone https://github.com/onlinux/OWL-CMR180.git
 $ cd OWL-CMR180/src
 $ make
 $ sudo ./rfrpi_test
-```
 
-```bash
 pi@raspi ~/rfrpi/rfrpi_my_src $ sudo ./rfrpi_test
 
 {"datetime": "2015-01-20 13:58:50", "name": "THGR122NX", "temperature": "18.90", "humidity": "51", "channel": "1" }
