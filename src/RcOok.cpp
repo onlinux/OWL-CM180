@@ -13,9 +13,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * --------------------------------------------------------------------------
- *  Modified on Jan 15 2015
- *  Added OSV3 support for OWL CMR180 Energy sensor -- Onlinux (onlinux.fr)
- * 
+ *
  *  Created on: 23 Feb. 2014
  *   Author: disk91 - Paul Pinault (c) 2014
  * --------------------------------------------------------------------------
@@ -176,12 +174,21 @@
     	char * _d = d;
         byte pos;
         const byte* data = this->getData(pos);
+        pos = pos +  ((total_bits >> 2) & 0x1); // on ajoute 1 byte si le nombre de nibbles est impaire
+        //printf("Pos: %d total_bits: %d %d", pos, total_bits, (total_bits >> 2) );
         sprintf(d,"%s ",s);
         d+=strlen(s);
         for (byte i = 0; i < pos ; ++i) {
             sprintf(d,"%c",v[ data[i] >> 4 ]);d++;
             sprintf(d,"%c",v[ data[i] & 0x0F]);d++;
         }
+        if ((total_bits >> 2) & 0x1) {
+            // Nombre de nibbles impaire
+            // On code de dernier sur un byte inversé
+            sprintf(d-2,"%c",'0');
+            sprintf(d-1,"%c",v[ data[pos-1] >> 4 ]);
+        }
+
         sprintf(d,'\0');
 
 #ifdef TRACE_RCOOK
@@ -370,7 +377,7 @@
                 case UNKNOWN:
                     if (w == 0)
                         ++flip;
-                    else if (32 <= flip) {
+                    else if (24 <= flip) {
                         flip = 1;
                         manchester(1);
                     } else
@@ -392,9 +399,9 @@
         } else {
             //return -1;
             // Trame intermédiaire 48bits ex: [OSV3 6281 3C 6801 70]
-            return  (total_bits <104 && total_bits>=40  ) ? 1: -1;
+            return  (total_bits <108 && total_bits>=40  ) ? 1: -1;
         }
-        return  (total_bits == 104) ? 1: 0;
+        return  (total_bits == 108) ? 1: 0;
 
     }
 
