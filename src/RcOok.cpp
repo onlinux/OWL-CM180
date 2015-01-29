@@ -13,7 +13,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * --------------------------------------------------------------------------
- *
+ *  Modified on Jan 15 2015        
+ *  Added OSV3 support for OWL CMR180 Energy sensor -- Onlinux (onlinux.fr)
+ * 
  *  Created on: 23 Feb. 2014
  *   Author: disk91 - Paul Pinault (c) 2014
  * --------------------------------------------------------------------------
