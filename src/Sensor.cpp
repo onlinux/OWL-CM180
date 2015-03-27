@@ -13,9 +13,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * --------------------------------------------------------------------------
- *  Modified on Jan 15 2015
- *  Added OSV3 support for OWL CMR180 Energy sensor -- Onlinux (onlinux.fr)
- * 
+ *
  *  Created on: 23 Feb. 2014
  *   Author: disk91 - Paul Pinault (c) 2014
  *
@@ -319,13 +317,15 @@
     bool OregonSensorV3::decode_OWLCM180(char * pt) {
         // OSV3 6284 3C 7801 D0
         //                   ^??
-        // OSV3 6280 3C 2801 A0A8BA05 00 trame principale
+        // OSV3 6280 3C 2801 A0A8BA05 00 00 ?? ?? ?? trame principale
         //    pt^      p^   t^
         char * p = &pt[6];
         char * t = &pt[10];
         char power[5]; int ipower;
         int  len = strlen(pt);
-        char total[9]; int dtotal =0; int itotal=0;
+        char total[9]; 
+        unsigned long dtotal=0; 
+        unsigned long itotal=0;
         
         power[0]=p[2]; power[1]=p[3]; power[2]=p[0]; power[3]=p[1]; power[4] ='\0';
         ipower= getIntFromString(power);
@@ -337,7 +337,7 @@
             total[6]=t[0]; total[7]=t[1];
             total[8]='\0';
             itotal = getIntFromString(total);
-            dtotal = getIntFromString(total)/3600; // Watt heure Wh
+            dtotal = itotal/3600; // Watt heure Wh
             this->havePowerTotal = true;
             this->powerTotal = dtotal;
         }
