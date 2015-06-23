@@ -100,17 +100,14 @@ void * EventManager::eventLoop( void * _param ) {
 					printf("EventManager::eventLoop() - proceed INIT \n");
 				#endif
 				if ( Singleton::get() ) {
-					Singleton::get()->getLedManager1()->setMode(LM_BLINKM_TWICE);
-					Singleton::get()->getLedManager2()->setMode(LM_BLINKM_TWICE);
-					Singleton::get()->getLedManager3()->setMode(LM_BLINKM_TWICE);
-					usleep(2000000);
-
+// 					Singleton::get()->getLedManager1()->setMode(LM_BLINKM_TWICE);
+// 					Singleton::get()->getLedManager2()->setMode(LM_BLINKM_TWICE);
+// 					Singleton::get()->getLedManager3()->setMode(LM_BLINKM_TWICE);
+//					usleep(2000000);
 					// Send welcome message .. should be received right after !
 					Singleton::get()->getCore433()->sendMess(0x123456,CORE433_MOD_RCS);
 				}
-
 				break;
-
 
 			// ------------------------------------------------------------
    		    // Just received an event from the RF module
@@ -118,10 +115,9 @@ void * EventManager::eventLoop( void * _param ) {
 				#ifdef TRACEEVENTMNG
 					printf("EventManager::eventLoop() - proceed GETSENSORDATA \n");
 				#endif
-				if ( Singleton::get() ) {
-					Singleton::get()->getLedManager1()->setMode(LM_BLINKM_TWICE);
-				}
-
+// 				if ( Singleton::get() ) {
+// 					//Singleton::get()->getLedManager1()->setMode(LM_BLINKM_TWICE);
+// 				}
 				{
 					Sensor * s = Sensor::getRightSensor(ev.strValue);
 					if ( s != NULL && s->isDecoded() ) {
@@ -134,7 +130,7 @@ void * EventManager::eventLoop( void * _param ) {
 						strftime(buffer,80,"%F %T", curtime);
                         if ( s->availablePower() ) {
 
-                            printf("{\"datetime\": \"%s\", \"name\": \"%s\", \"power\": \"%.0f\", \"total\": \"%.0f\"}", buffer, s->getSensName(), s->getPower(), s->getPowerTotal());
+                            printf("{\"datetime\": \"%s\", \"name\": \"%s\", \"power\": \"%.0f\", \"total\": \"%.0f\", \"packet\": \"%s\" }", buffer, s->getSensName(), s->getPower(), s->getPowerTotal(), s->getPacket());
                             std::cout << std::endl;
                         } else {
                       
