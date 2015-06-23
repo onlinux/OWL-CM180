@@ -2,9 +2,7 @@
  * Sensor.h
  * ---------------------------------------------------
  * Sensor decoding from 433 Message
- *  Modified on Jan 15 2015
- *  Added OSV3 support for OWL CMR180 Energy sensor -- Onlinux (onlinux.fr)
- * 
+ *
  *  Created on: 17 sept. 2013
  *  Author: disk91 / (c) myteepi.com
  * ===================================================
@@ -62,7 +60,9 @@ protected:
 	int		sensorClass;		// marque du sensor cf #define
 	int		sensorType;			// model of sensor
 	char    sensorName[128];	// name of the sensor
-
+	
+    char    packet[128];        // packet string
+    
 	time_t  creationTime;		// objectCreation time
 
 	static char	_hexDecod[];
@@ -108,7 +108,9 @@ public:
 	int getSensClass();			// return sensor class
 	int getSensType();			// return sensor type
 	char * getSensName();		// return sensor name string
-
+    
+    char * getPacket();       // return packet string
+    
 	time_t getCreationTime();	// return object creation time
 
 	static Sensor * getRightSensor(char * s);	// wrapper for child class
