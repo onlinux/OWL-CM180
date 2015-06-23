@@ -13,7 +13,7 @@ OSV3 62803CE8006047D9120000D085[CMR180,...] Id:6280, size:13 ,Flags:8 ,power:224
 0: primary packet<BR>
 3C: type (?? constant value, and i suppose it's owl-cmr180 type. i use it that way in the script)<BR>
 E800: little-indian 0x00E8 (0x00E8 & 0xFFF0 = 224 Watts) last nibble (8) considered as Flags-1 (OSV3 protocol documentation)<BR>
-6047D912: Little-indian 0x12D94760 (316229472 Watts/ 3600/100 = 87.84 kWh)<BR>
+6047D912: Little-indian 0x12D94760 (316229472 Watts/ 3600/1000 = 87.84 kWh)<BR>
 ...: ??<BR>
 
 1. [Secondary]<BR>
