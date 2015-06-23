@@ -130,7 +130,7 @@ void * EventManager::eventLoop( void * _param ) {
 						strftime(buffer,80,"%F %T", curtime);
                         if ( s->availablePower() ) {
 
-                            printf("{\"datetime\": \"%s\", \"name\": \"%s\", \"power\": \"%.0f\", \"total\": \"%.0f\", \"packet\": \"%s\" }", buffer, s->getSensName(), s->getPower(), s->getPowerTotal(), s->getPacket());
+                            printf("{\"datetime\": \"%s\", \"name\": \"%s\", \"power_unit\": \"W\",\"power\": \"%.0f\", \"total_unit\": \"Wh\",\"total\": \"%.0f\", \"packet\": \"%s\" }", buffer, s->getSensName(), s->getPower(), s->getPowerTotal(), s->getPacket());
                             std::cout << std::endl;
                         } else {
                       
