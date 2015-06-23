@@ -71,6 +71,8 @@
 		this->sensorType = -1;
 		this->sensorClass = SENS_CLASS_NONE;
 		this->sensorName[0] = '\0';
+		this->packet[0] = '\0';
+        
 		time(&this->creationTime);
 
 	}
@@ -212,7 +214,11 @@
 	char * Sensor::getSensName() {
 		return this->sensorName;
 	}
-
+    // ---------------------------------------------------
+    // getPacket() - return packet string
+    char * Sensor::getPacket() {
+        return this->packet;
+    }
 	// ---------------------------------------------------
 	// getIntFromChar() - (-1 if error)
 	int Sensor::getIntFromChar(char c) {
@@ -319,33 +325,38 @@
     bool OregonSensorV3::decode_OWLCM180(char * pt) {
         // OSV3 6284 3C 7801 D0
         //                   ^??
-        // OSV3 6280 3C 2801 A0A8BA05 00 00 ?? ?? ?? trame principale
+        // OSV3 6280 3C 2801 A0 A8 BA 05 00 00 ?? ?? ?? trame principale
         //    pt^      p^   t^
         char * p = &pt[6];
         char * t = &pt[10];
         char power[5]; int ipower;
         int  len = strlen(pt);
-        char total[9]; 
-        unsigned long dtotal=0; 
-        unsigned long itotal=0;
+        char total[13]; 
+        unsigned long  long dtotal=0; 
+        
         
         power[0]=p[2]; power[1]=p[3]; power[2]=p[0]; power[3]=p[1]; power[4] ='\0';
         ipower= getIntFromString(power);
         if (len > 12 ) {
-            // Trame principale avec cumul kWh
-            total[0]=t[6]; total[1]=t[7];
-            total[2]=t[4]; total[3]=t[5];
-            total[4]=t[2]; total[5]=t[3];
-            total[6]=t[0]; total[7]=t[1];
-            total[8]='\0';
-            itotal = getIntFromString(total);
-            dtotal = itotal/3600; // Watt heure Wh
+            // Trame principale avec cumul en W
+
+            total[0]=t[10]; total[1]=t[11];
+            total[2]=t[8];  total[3]=t[9];
+            total[4]=t[6];  total[5]=t[7];
+            total[6]=t[4];  total[7]=t[5];
+            total[8]=t[2];  total[9]=t[3];
+            total[10]=t[0]; total[11]=t[1];
+            total[12]='\0';
+
+            dtotal = strtoull(total, NULL, 16)/3600;// Watt heure Wh
             this->havePowerTotal = true;
             this->powerTotal = dtotal;
         }
         this->havePower = true;
         this->haveRawPower = true;
         this->rawpower = ipower;
+        
+        strncpy(this->packet, pt, 128);
         
         if (ipower > 2000)
             this->power = ipower -4;
@@ -354,8 +365,8 @@
         //this->power = ipower | 0xFFF7;
         #ifdef SENSORDEBUG
         if (len > 12)
-            printf("OSV3 - decode : id(%s)  power(%s)(0x%04X)%iW  %iW total(0x%X) %uW %uWh\n ",
-                                 " 6280", power, ipower, ipower, this->power, itotal, itotal, dtotal);
+            printf("OSV3 - decode : id(%s) (%s) power(%s)(0x%04X)%iW  %iW total(0x%X) %uW %uWh\n ",
+                                 " 6280", this->packet, power, ipower, ipower, this->power, itotal, itotal, dtotal);
         else
             printf("OSV3 - decode : id(%s)  power(%s)(0x%04X)%iW  %iW\n ",
                                  " 6280", power, ipower, ipower, this->power);
