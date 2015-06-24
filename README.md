@@ -1,4 +1,4 @@
-# OWL-CMR180
+# OWL-CM180
 Decode and parse the Oregon Scientific V3 radio data transmitted by  OWL CM180 Energy sensor (433.92MHz)
 
 Owl micro+ Wireless electricity monitor runs on Oregon Scientific V3 protocol.
