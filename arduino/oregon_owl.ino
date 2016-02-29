@@ -264,6 +264,11 @@ byte humidity(const byte* data)
     return (data[7]&0xF) * 10 + ((data[6]&0xF0) >> 4);
 }
  
+int pressure(const byte* data)
+{
+    return data[8] + 856;
+}
+ 
 // Ne retourne qu'un apercu de l'etat de la batterie : 10 = faible
 byte battery(const byte* data)
 {
@@ -372,6 +377,23 @@ void reportSerial (const char* s, class DecodeOOK& decoder) {
        Serial.print(temperature(data));
        Serial.print(" ,hum:");
        Serial.print(humidity(data));
+       Serial.print(" ,bat:");
+       Serial.print(battery(data)); 
+       Serial.println();
+    }
+    // Inside Temp-Hygro-Baro : BTHR918N,...
+    else if(data[0] == 0x5A && data[1] == 0x6D)
+    {
+       Serial.print("[BTHR918N,...] Id:");
+       Serial.print(data[3], HEX);
+       Serial.print(" ,Channel:");
+       Serial.print(channel(data));
+       Serial.print(" ,temp:");
+       Serial.print(temperature(data));
+       Serial.print(" ,hum:");
+       Serial.print(humidity(data));
+       Serial.print(" ,press:");
+       Serial.print(pressure(data));
        Serial.print(" ,bat:");
        Serial.print(battery(data)); 
        Serial.println();
